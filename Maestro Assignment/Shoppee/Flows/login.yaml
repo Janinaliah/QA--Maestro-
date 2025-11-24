@@ -1,0 +1,35 @@
+appId: com.shopee.ph
+tags:
+  - login-shoppee
+---
+- launchApp
+
+
+# Login
+- tapOn: Login
+- runScript: "../Scripts/login.js"
+
+# Enter credentials
+- tapOn: Phone/Email/Username
+- inputText: ${output.loginemail}
+- tapOn: Password
+- inputText: ${output.loginpassword}
+
+- tapOn:
+    id: cret_show_hide_text_image_view # to view password
+- tapOn:
+    text: Log In
+    index: 1
+
+- tapOn:
+    id: buttonActionBarIcon
+
+# secure your account
+#- tapOn: Agree
+
+# assert if User name is visible
+- assertVisible:
+    id: labelUserName
+
+# home button
+- tapOn: tab_bar_button_home

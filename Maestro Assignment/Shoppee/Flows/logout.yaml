@@ -1,0 +1,28 @@
+appId: com.shopee.ph
+tags:
+  - logout
+---
+
+- tapOn: tab_bar_button_me
+
+# account Settings
+- tapOn:
+    id: buttonAccountSettings
+- assertVisible: Account Settings
+
+
+- scroll
+
+- tapOn: Logout
+
+# Yes
+- tapOn:
+    id: buttonDefaultPositive
+
+- tapOn:
+    id: buttonActionBarIcon
+
+- extendedWaitUntil:
+    visible:
+      id: TANGRAM_VIEW_CONTAINER_ID # or any other selector
+    timeout: 10000 # Timeout in milliseconds

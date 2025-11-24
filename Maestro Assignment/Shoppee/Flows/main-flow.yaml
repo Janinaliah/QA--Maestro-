@@ -1,0 +1,26 @@
+appId: com.shopee.ph
+tags:
+  - shoppee-flow
+---
+- launchApp:
+    clearState: True
+
+- tapOn: START
+- waitForAnimationToEnd:
+    timeout: 5000
+
+- assertVisible: ShopeePay
+- tapOn: tab_bar_button_me
+- assertVisible: My Purchases
+
+# login
+- runFlow: login.yaml
+
+# Search for a product
+- runFlow: search-product.yaml
+
+# View Details
+- runFlow: view-details.yaml
+
+# logout 
+- runFlow: logout.yaml

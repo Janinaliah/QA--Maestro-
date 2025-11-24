@@ -1,0 +1,46 @@
+appId: com.spotify.music
+tags:
+  - search for products
+---
+- tapOn: Search, Tab 2 of 5
+- assertVisible: Start browsing
+- tapOn: Podcasts
+- tapOn: # podcast
+    id: card
+    index: 4
+- assertVisible:
+    id: title # of the podcast
+- tapOn:
+    id: icon # podcast open
+- tapOn:
+    id: header # to play
+- tapOn: "Beyond an Overused Word: Understanding True Hope"
+
+# If ad appears
+- runFlow:
+    when:
+      visible:       # or "Your music will continue after the break"
+        id: ad_info_row
+    commands:
+      - assertVisible: "Ad"
+      - assertVisible: "Your music will continue after the break"
+      - assertVisible: "0:"   # countdown timer (00:15 etc)
+      - extendedWaitUntil:
+          notVisible: "Ad"
+          timeout: 30000   # wait up to 30 seconds for ad to finish
+      - tapOn:
+          point: 3%,5%
+
+# Validate playback controls:
+- assertVisible:
+    text: Playback speed
+    index: 1
+- assertVisible: Playback speed
+- assertVisible: Skip 15 seconds
+- repeat:
+    times: 1
+    commands:
+      - pressKey: Back
+
+
+

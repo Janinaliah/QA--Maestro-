@@ -1,0 +1,45 @@
+appId: com.spotify.music
+tags:
+  - premium-upsell
+---
+- tapOn: Profile
+- tapOn: Settings and privacy
+- assertVisible: Free account
+- tapOn: Go Premium
+
+# Scroll and check subscription types
+- repeat:
+    times: 1                    
+    commands:
+      - swipe:
+          start: 50%,80%
+          end: 50%,30%
+          duration: 500
+
+      # Check for Individual
+      - assertVisible:
+          text: "Individual"
+          optional: true
+      - swipe:
+          start: 50%,80%
+          end: 50%,30%
+          duration: 500
+      # Check for Student
+      - assertVisible:
+          text: "Student"
+          optional: true
+      - swipe:
+          start: 50%,80%
+          end: 50%,30%
+          duration: 500
+      # Check for Duo
+      - assertVisible:
+          text: "Duo"
+          optional: true
+      # Check for Family
+      - assertVisible:
+          text: "Family"
+          optional: true
+
+# Navigate back without Subscribing
+- tapOn: Home, Tab 1 of 5

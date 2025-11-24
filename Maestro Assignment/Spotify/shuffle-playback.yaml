@@ -1,0 +1,73 @@
+appId: com.spotify.music
+tags:
+  - shuffle-playback
+---
+# play button / shuffle play
+- tapOn:
+    id: play_button
+
+# If ad appears
+- runFlow:
+    when:
+      visible:       # or "Your music will continue after the break"
+        id: ad_info_row
+    commands:
+      - assertVisible: "Ad"
+      - assertVisible: "Your music will continue after the break"
+      - assertVisible: "0:"   # countdown timer (00:15 etc)
+      - extendedWaitUntil:
+          notVisible: "Ad"
+          timeout: 30000   # wait up to 30 seconds for ad to finish
+      - tapOn:
+          point: 3%,5%
+
+# to verify that the played music is played on shuffle
+- swipe:
+    start: 50%, 80%
+    end: 50%, 40%
+    duration: 500
+
+- assertVisible: # assert that a music is playing
+    id: now_playing_bar_container
+
+# If ad appears
+- runFlow:
+    when:
+      visible:       # or "Your music will continue after the break"
+        id: ad_info_row
+    commands:
+      - assertVisible: "Ad"
+      - assertVisible: "Your music will continue after the break"
+      - assertVisible: "0:"   # countdown timer (00:15 etc)
+      - extendedWaitUntil:
+          notVisible: "Ad"
+          timeout: 30000   # wait up to 30 seconds for ad to finish
+
+# If no ad shows up (song starts directly)
+- runFlow:
+    when:
+      visible: # or track title element
+        id: now_playing_bar_fragment_container
+    commands:
+        - assertVisible:
+            id: now_playing_bar_fragment_container
+
+# After the track stars:
+- assertVisible: Currently playing track
+- tapOn:
+    id: now_playing_bar_container
+- assertNotVisible: offline_button
+- assertNotVisible: high_quality_audio_options
+
+# At least finish two songs so ads will trigger
+
+
+
+# ADS PART --- assert "Your music will continue after the break”
+#- assertVisible: Your music will continue after the break
+#- assertVisible: 0:30 # countdown timer
+#- tapOn: Next # next button is disabled and cannot skip during add
+# after ads ends → validate song resumes
+#- assertVisible:
+    #id: nowplaying_elements_playpause_button
+

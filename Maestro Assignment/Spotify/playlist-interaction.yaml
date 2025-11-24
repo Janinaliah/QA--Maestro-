@@ -1,0 +1,36 @@
+appId: com.spotify.music
+tags:
+  - playlist interaction
+---
+- pressKey: Back
+# to exit the now_playing_bar_container
+- repeat:
+    times: 4
+    commands:
+      - pressKey: Back
+- tapOn: Home, Tab 1 of 5
+
+# to open a public playlist
+- tapOn: LANY
+- tapOn: Disable shuffle for this artist # to assert that it can only played via shuffled play
+- pressKey: Back # Want to control how you listen?
+
+# top on ellipsis
+- tapOn:
+    id: accessory
+    index: 1
+- assertNotVisible: Download
+- swipe: # pull down the design_bottom_sheet
+    start: 46%, 41%
+    end: 50%, 95%
+- tapOn: Now Playing Bar
+- tapOn: # to add into the liked song
+    id: feedback_buttons_container
+    
+- extendedWaitUntil:
+    visible: "Added to Liked Songs"
+    timeout: 2000
+    optional: true
+
+- assertVisible: Item added # added to liked song check mark
+- pressKey: Back

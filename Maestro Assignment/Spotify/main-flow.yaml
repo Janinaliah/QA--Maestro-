@@ -1,0 +1,29 @@
+appId: com.spotify.music
+tags:
+  - main-flow-spotify
+---
+# <---------- Launch & Login Validation ---------->
+- launchApp:
+    clearState: false
+- assertVisible:
+    id: faceheader_image
+- assertVisible: Home, Tab 1 of 5
+
+- runFlow: home-screen-verification.yaml
+
+- runFlow: search-flow.yaml
+
+- runFlow: shuffle-playback.yaml
+
+- runFlow: queue-playback-restriction.yaml
+
+- runFlow: playlist-interaction.yaml
+
+- runFlow: search-for-podcasts.yaml
+
+- runFlow: background-behavior.yaml
+
+- runFlow: premium-upsell-flow.yaml
+
+- runFlow: logout-cleanup.yaml
+

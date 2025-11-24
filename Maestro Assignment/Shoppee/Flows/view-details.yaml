@@ -1,0 +1,56 @@
+appId: com.shopee.ph
+tags:
+  - view-details
+---
+# View Details
+- tapOn:
+    point: 2%,63%
+- assertVisible: # product  name
+    id: labelProductPageProductName
+
+# checking for the specs & description of the product
+- tapOn: Specs & Description
+- repeat:
+    times: 1
+    commands:
+      - scroll
+
+# scrolling back to top
+- scrollUntilVisible:
+    element:
+      id: ".*sectionProductName" # or any other selector
+    direction: UP
+
+- assertVisible:
+    id: sectionProductPrice
+
+# Add to Cart
+- tapOn:
+    id: buttonProductAddCart
+- assertVisible:
+    id: labelVariationName
+- tapOn:
+    id: buttonOption_unselected
+- tapOn: Add to Cart
+
+# to open Cart
+- tapOn:
+    point: 81%,6% # cart
+- tapOn:
+    point: 5%,25%
+
+- tapOn: Check Out (1)
+
+- repeat:
+    times: 2
+    commands:
+      - scroll
+      
+- tapOn:
+    id: buttonActionBarIcon
+- tapOn: Leave
+
+- repeat:
+    times: 6
+    commands:
+      - pressKey: Back

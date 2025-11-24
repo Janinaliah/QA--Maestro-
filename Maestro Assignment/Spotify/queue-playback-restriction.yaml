@@ -1,0 +1,21 @@
+appId: com.spotify.music
+tags:
+  - queue
+  - playback restrictions
+---
+#- tapOn: Now Playing Bar
+#- tapOn: Currently playing track
+
+- tapOn: 
+    id: queue_button
+# trigger if tracks can be rearrange position
+- longPressOn:
+    id: drag_handle
+    index: 4
+# Want to reorder your queue? modal
+- tapOn: Dismiss
+- tapOn: # Try to pick a specific song from the playlist
+    id: container
+    index: 5
+- assertVisible: Playing # song successfully played
+

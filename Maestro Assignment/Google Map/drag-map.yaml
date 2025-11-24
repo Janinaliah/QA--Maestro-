@@ -1,0 +1,36 @@
+appId: com.google.android.apps.maps
+tags:
+  - drag-map
+---
+- launchApp:
+    clearState: true
+
+# Google
+- assertVisible: Search here
+- tapOn: # to target exact location if location is turned on
+    id: fab_icon
+    index: 1
+
+# Permission
+- tapOn: While using the app
+# - tapOn: Turn on
+
+# Zoom in
+- doubleTapOn:
+    id: home_bottom_sheet_container
+    delay: 100
+
+# drag the map
+- swipe:
+    start: 70%, 30%
+    end: 20%, 30%
+
+# Long press on an empty area to drop a pin
+- longPressOn:
+    id: home_bottom_sheet_container
+
+# Extract dropped pin address
+- longPressOn:
+    point: 8%,60%
+
+- tapOn: Close # to close modal

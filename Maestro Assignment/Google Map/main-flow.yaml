@@ -1,0 +1,12 @@
+appId: com.google.android.apps.maps
+tags:
+  - flow-map
+---
+- launchApp:
+    clearState: true
+
+- runFlow: drag-map.yaml
+
+- runFlow: change-map-layers.yaml
+
+- runFlow: navigation-stress-test.yaml

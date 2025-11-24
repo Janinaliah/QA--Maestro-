@@ -1,0 +1,29 @@
+appId: com.google.android.apps.maps
+tags:
+  - map-layers
+---
+- launchApp
+# Change Map Layers
+- runFlow:
+    when:
+      visible: 'Search here'
+    commands:
+        - tapOn: 'Layers'
+        - assertVisible: Map type
+        - tapOn: Satellite
+        - tapOn: Terrain
+        - tapOn: Traffic
+        - tapOn: Close menu
+        - swipe: # to view traffic
+            start: 80%, 50%
+            end: 20%, 50%
+
+- doubleTapOn:
+    id: home_bottom_sheet_container
+    delay: 100
+- swipe: 
+    start: 55%, 30%
+    end: 80%, 30%
+- longPressOn:
+    point: 50%, 75%
+- tapOn: Close # close modal

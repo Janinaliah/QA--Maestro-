@@ -1,0 +1,17 @@
+appId: com.shopee.ph
+tags:
+  - search-product
+---
+- runScript: "../Scripts/search-product.js"
+
+- tapOn:
+    id: search_prefill_click
+- inputText: ${output.searchproduct}
+- tapOn:
+    id: DRE_VIEW_CONTAINER_ID
+    index: 2
+
+- assertVisible:
+    id: DRE_VIEW_CONTAINER_ID
+    index: 2
+

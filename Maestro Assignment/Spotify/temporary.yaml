@@ -1,0 +1,57 @@
+appId: com.spotify.music
+tags:
+  - home-screen
+---
+# <---------- HOME SCREEN VERIFICATION ---------->
+# Recents Section
+- scrollUntilVisible:
+    element:
+      text: Recents
+- assertVisible: Recents
+
+# Recommended for today
+- repeat:
+    times: 12
+    commands:
+      - swipe:
+          start: 50%, 80%   # bottom part
+          end: 50%, 28%     # upper part (scroll down)
+          duration: 500
+      # stop if Recommended for today becomes visible
+      - extendedWaitUntil:
+          visible: "Recommended for today"
+          timeout: 500
+          optional: true
+
+# Made for you section
+- repeat:
+    times: 11
+    commands:
+      - swipe:
+          start: 50%,27%   # bottom part
+          end: 50%, 80%     # upper part (scroll down)
+          duration: 500
+      # stop if Recommended for today becomes visible
+      - extendedWaitUntil:
+          visible: "Made for Ninaaa"
+          timeout: 500
+          optional: true
+
+#- assertNotVisible: Recommended for today
+
+# Scroll Vertically
+- repeat:
+    times: 3
+    commands:
+      - swipe:
+          start: 50%, 30%
+          end: 50%, 80%
+          duration: 500
+
+# Long-press on a playlist
+- longPressOn: LANY
+
+- assertNotVisible: Download
+- swipe: # pull down the design_bottom_sheet
+    start: 46%,39%
+    end:  50%, 95%

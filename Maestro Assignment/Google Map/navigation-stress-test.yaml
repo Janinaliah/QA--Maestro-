@@ -1,0 +1,43 @@
+appId: com.google.android.apps.maps
+tags:
+  - navigation
+env:
+  destination: SM City La Union
+  next_destination: CSI Mall La Union
+---
+- tapOn: Search here
+- inputText: ${destination}
+- tapOn:
+    text: SM City La Union
+    index: 1
+- tapOn: Directions
+- tapOn: Start
+
+# Permission
+- tapOn: Not now
+- tapOn: Dismiss
+
+- assertVisible:
+    id: top_cue_text # if indicated location is visible
+- tapOn: Close navigation # more likely pause since there is no pause button
+#- assertVisible: Traffic
+- tapOn: Start # to resume again
+
+- tapOn: OK # Welcome to Google Maps navigation
+- tapOn: Not now # Turn on notifications
+
+
+# change mid-route destination
+- tapOn:
+    id: fab_icon # search button on the right corner
+- assertVisible: Search along route
+- inputText: ${next_destination}
+- tapOn:
+    text: CSI Mall La Union
+    index: 1
+- tapOn:
+    point: 84%,89%
+- assertVisible:
+    id: top_cue_text
+- tapOn: Close navigation
+- tapOn: Exit navigation

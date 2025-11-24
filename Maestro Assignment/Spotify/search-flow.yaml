@@ -1,0 +1,64 @@
+appId: com.spotify.music
+tags:
+  - search-spotify
+env:
+  artist: Taylor Swift
+---
+# Search Flow (with Restrictions)
+- tapOn: Search, Tab 2 of 5
+- assertVisible:
+    id: browse_search_bar_container
+
+# Search Bar
+- tapOn:
+    id: browse_search_bar_container
+- inputText: ${artist}
+- assertVisible: # validate auto suggestion
+    id: row_root
+
+# artist profile
+- tapOn:
+    id: row_root
+    index: 4
+- assertVisible: Taylor Swift
+
+# shuffle button
+- assertVisible:
+    id: shuffle_button
+
+# play button is visible
+- assertVisible:
+    id: button_play_and_pause
+
+# Popular
+- assertVisible: Popular
+
+# to show the artist profile
+- swipe:
+    start: 50%, 80%
+    end: 50%, 45%
+
+# Artist pick
+- assertVisible: Artist Pick
+- assertVisible: The Life of a Showgirl
+
+# until popular releases is visible
+- swipe:
+    start: 50%, 80%
+    end: 50%, 40%
+    duration: 500
+- assertVisible: Popular releases
+- repeat:
+    times: 2
+    commands:
+      - swipe:
+          start: 50%, 30%
+          end: 50%, 80%
+          duration: 500
+
+
+
+
+
+
+

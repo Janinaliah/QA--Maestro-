@@ -1,0 +1,32 @@
+appId: com.spotify.music
+tags:
+  - background-the-app
+---
+- tapOn: Home
+- swipe: # down to open notification
+    start: 50%, 0%
+    end: 50%, 30%
+- assertVisible:
+    id: album_art
+- assertVisible:
+    id: actionPlayPause
+- tapOn:
+    id: actionPlayPause
+- assertVisible: Play
+
+- swipe: # up to close the notification
+    start: 50%, 80%
+    end: 50%, 10%
+- tapOn: Overview # to open recent opened apps
+- tapOn:
+    id: snapshot
+
+# Back to home
+- repeat:
+    times: 2
+    commands:
+    - pressKey: Back
+- tapOn: Home, Tab 1 of 5
+
+
+

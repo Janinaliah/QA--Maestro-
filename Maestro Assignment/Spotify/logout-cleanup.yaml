@@ -1,0 +1,11 @@
+appId: com.spotify.music
+tags:
+  - logout
+  - cleanup
+---
+- tapOn: Profile
+- tapOn: Settings and privacy
+- scroll
+#- tapOn: Log out
+- assertVisible: Spotify
+- pressKey: Back
